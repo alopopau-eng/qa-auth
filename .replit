@@ -1,0 +1,55 @@
+modules = ["nodejs-20", "web", "postgresql-16"]
+run = "npm run dev"
+hidden = [".config", ".git", "generated-icon.png", "node_modules", "dist"]
+
+[nix]
+channel = "stable-24_05"
+
+[deployment]
+deploymentTarget = "autoscale"
+build = ["npm", "run", "build"]
+run = ["npm", "run", "start"]
+
+[[ports]]
+localPort = 5000
+externalPort = 80
+
+[env]
+PORT = "5000"
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Start application"
+
+[[workflows.workflow]]
+name = "Start application"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run dev"
+waitForPort = 5000
+
+[agent]
+mockupState = "FULLSTACK"
+
+[userenv]
+
+[userenv.shared]
+VITE_FIREBASE_API_KEY = "AIzaSyBGDchmCAfCY6lGsJFdewIAo448DrmDq4I"
+VITE_FIREBASE_AUTH_DOMAIN = "qatae-a69d6.firebaseapp.com"
+VITE_FIREBASE_PROJECT_ID = "qatae-a69d6"
+VITE_FIREBASE_STORAGE_BUCKET = "qatae-a69d6.firebasestorage.app"
+VITE_FIREBASE_MESSAGING_SENDER_ID = "216733363056"
+VITE_FIREBASE_APP_ID = "1:216733363056:web:2a89862d0c0e33413b7db5"
+VITE_FIREBASE_MEASUREMENT_ID = "G-8CWJHX15PB"
+VITE_FIREBASE_DATABASE_URL = "https://qatae-a69d6-default-rtdb.firebaseio.com"
+VITE_RECAPTCHA_SITE_KEY = "6Le5jSksAAAAAM1Cts4GrsfEWR7XtsMmHQdajSwA"
