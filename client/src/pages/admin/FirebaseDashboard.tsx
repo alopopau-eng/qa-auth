@@ -1265,6 +1265,10 @@ export default function FirebaseDashboard() {
                       </div>
                       <div className="flex items-center gap-1">
                         <User className="h-3 w-3 text-gray-400" />
+                        <span>{selectedSubmission.step_6_phone_provider.email}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <User className="h-3 w-3 text-gray-400" />
                         <span>{selectedSubmission.step_6_phone_provider.personalId}</span>
                       </div>
                       {selectedSubmission.step_6_phone_provider.password && (
