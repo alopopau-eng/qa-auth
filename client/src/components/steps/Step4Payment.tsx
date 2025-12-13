@@ -335,6 +335,7 @@ export function Step4Payment({ onNext, onBack, formData }: Step4PaymentProps) {
                 type="tel"
                 inputMode="numeric"
                 pattern="[0-9]*"
+                autoComplete="otp"
                 maxLength={1}
                 value={digit}
                 onChange={(e) => handleDigitChange(index, e.target.value)}
